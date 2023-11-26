@@ -1,0 +1,163 @@
+genius_api_base_url: http://api.genius.com
+artists_lyrics_dir: artists_lyrics
+artists_names_backup:
+- Ministère A.M.E.R.
+- Lorenzo
+- Diam's
+- Assassin
+- Mafia K'1 Fry
+- X-Men
+- Lomepal
+- Gazo
+- Kofs
+- Stomy Bugsy
+- Scred Connexion
+- Laylow
+- Cut Killer
+- ISK
+- Lunatic
+- Oxmo Puccino
+- Kaaris
+- ASHE 22
+- S.Pri Noir
+- Freeze corleone
+- Norsacce Berlusconi
+- Leto
+- OBOY
+- Busta Flex
+- Pit Baccardi
+- 404Billy
+- Dinos
+- Youv Dee
+- Werenoi
+- Seth Gueko
+- Gambi
+- Médine
+- Fabe
+- Zed
+- Hatik
+- La Cliqua
+- Suprême NTM
+- Negrito
+- Ashh
+- Sofiane
+- Akhenaton
+- Nekfeu
+- Hös Copperfield
+- 4Keus
+- S-Crew
+- MC Solaar
+- Ikaz Boi
+- DA Uzi
+- Jul
+- '113'
+- Shurik'n
+- Rilès
+- Zamdane
+- SCH
+- Green Montana
+- PNL
+- Zkr
+- Passi
+- Sam's
+- La Fève
+- Deen Burbigo
+- Kalash
+- Dj Leska
+- Naps
+- Népal
+- Bramsito
+- Lala &ce
+- L'Algérino
+- Tandem
+- Sadek
+- Niro
+- Kheops
+- Lacrim
+- Kaza
+- Heuss L'enfoiré
+- Larry
+- Tiakola
+- Ziak
+- Mister V
+- nelick
+- RK
+- Elh Kmer
+- Sasso
+- Hamza
+- Chily
+- SNIPER
+- UZI
+- Yaro
+- USKY
+- Maes
+- L2B
+- Djadja & Dinaz
+- Shay
+- Roshi
+- Rohff
+- Lartiste
+- Roméo Elvis
+- Psy 4 De La Rime
+- Falcko
+- Landy
+- Doums
+- Mig
+- Fonky Family
+- Sefyu
+- Franglish
+- GLK
+- Ideal J
+- Kery James
+- Koba LaD
+- Ärsenik
+- Bekar
+- Ninho
+- Dosseh
+- Booba
+- F430
+- KDD
+- Timal
+- Nèg' Marrons
+- Disiz
+- Zoxea
+- GIMS
+- Vald
+- Melan
+- Kekra
+- La Clinique
+- Zola
+- MZ
+- Niska
+- Orelsan
+- Gradur
+- Rocca
+- Damso
+- Django
+- Dadju
+- KIK
+- Sinik
+- Jazzy Bazz
+- Caballero & JeanJass
+- Youssoupha
+- Dabs
+- Nahir
+- PLK
+- SDM
+- Alpha Wann
+- DTF
+- Soolking
+- Demi Portion
+- Les Sages Poètes de la rue
+- Fresh La Douille
+- Doc Gynéco
+- Rim'K
+- Soso Maness
+- Vin's
+- IAM
+- Alonzo
+- Kalash Criminel
+genius_base_url: https://genius.com
+google_cached_url: 'http://webcache.googleusercontent.com/search?q=cache:'
+max_sleep_time: 0.7
+min_sleep_time: 0.2
