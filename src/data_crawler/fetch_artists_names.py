@@ -4,6 +4,10 @@ import spotipy
 from spotipy.oauth2 import SpotifyOAuth, SpotifyClientCredentials
 from src.utils.file_utils import get_spotify_cred, get_config, write_in_config
 
+from src.utils.logger import get_console_logger
+
+logger = get_console_logger()
+
 def search_french_rap_playlists(sp, offsets):
     """
     Fetches French hip hop playlists from Spotify.
@@ -18,7 +22,7 @@ def search_french_rap_playlists(sp, offsets):
     all_playlist_ids = []
 
     for offset in offsets:
-        print(f'Fetching playlists starting from offset: {offset}')
+        logger.info(f'Fetching playlists starting from offset: {offset}')
         response = sp.search(q="genre: french hip hop", limit=50, type="playlist", offset=offset)
         all_playlist_ids.extend([item["id"] for item in response["playlists"]["items"]])
 
@@ -66,11 +70,11 @@ def get_playlists_tracks(sp, playlist_ids):
     all_tracks = []
 
     for count, playlist_id in enumerate(playlist_ids, start=1):
-        print(f'Fetching tracks from playlist {count}')
+        logger.info(f'Fetching tracks from playlist {count}')
         tracks = get_playlist_tracks(sp, playlist_id)
         all_tracks.extend(tracks)
 
-    print(f"Fetched {len(all_tracks)} tracks")
+    logger.info(f"Fetched {len(all_tracks)} tracks")
 
     return all_tracks
 
@@ -87,7 +91,7 @@ def get_artists_ids_from_tracks(tracks):
     """
     artists_ids = {track["track"]["artists"][0]["id"] for track in tracks if track["track"]}
 
-    print(f'Fetched {len(artists_ids)} unique artists')
+    logger.info(f'Fetched {len(artists_ids)} unique artists')
 
     return artists_ids
 
@@ -111,11 +115,11 @@ def get_tracks_artists_spotify(sp, artist_ids):
             time.sleep(10)
         
         time.sleep(rd.uniform(0.2, 0.7))
-        print(f"Fetching artist {artist_id}")
+        logger.info(f"Fetching artist {artist_id}")
         result = sp.artist(artist_id)
 
         if "genres" in result and "french hip hop" in result["genres"]:
-            print(result["name"])
+            logger.info(result["name"])
             artist_names.add(result["name"])
 
     return artist_names

@@ -5,7 +5,10 @@ import time
 import requests
 import random as rd
 from bs4 import BeautifulSoup
+from src.utils.logger import get_console_logger
 from src.utils.file_utils import get_genius_cred, get_config
+
+logger = get_console_logger()
 
 def get_artists_ids(api_base_url, headers, artists_names):
     """Fetch artist IDs based on artist names.
@@ -22,7 +25,7 @@ def get_artists_ids(api_base_url, headers, artists_names):
 
     for artist_name in artists_names:
         params = {"q": artist_name}
-        print(f"Looking for {artist_name} id")
+        logger.info(f"Looking for {artist_name} id")
         response = requests.get(f"{api_base_url}/search/", params=params, headers=headers)
         response_json = response.json()
 
@@ -33,12 +36,12 @@ def get_artists_ids(api_base_url, headers, artists_names):
                 break
 
         if artist_id is not None:
-            print("Collecting songs for", artist_name, ": Artist ID", artist_id)
+            logger.info("Collecting songs for", artist_name, ": Artist ID", artist_id)
             artists_ids[artist_id] = artist_name
         else:
-            print("Artist", artist_name, "not found.")
+            logger.info("Artist", artist_name, "not found.")
 
-    print("IDs found")
+    logger.info("IDs found")
     return artists_ids
 
 def get_artist_songs_url(api_base_url, headers, artist_id):
@@ -73,7 +76,7 @@ def get_artist_songs_url(api_base_url, headers, artist_id):
         else:
             page_count += 1
 
-        print(len(artist_songs_url), "songs found")
+        logger.info(len(artist_songs_url), "songs found")
 
     return artist_songs_url
 
@@ -133,7 +136,7 @@ def get_song_lyrics(base_url, song_urls, min_sleep_time, max_sleep_time):
             elif response.status_code == 429:  # Rate limited
                 reset_time = int(response.headers.get('X-RateLimit-Reset', 0)) - int(time.time())
                 reset_time = max(0, reset_time)
-                print(f"Rate limit exceeded. Sleeping for {reset_time} seconds.")
+                logger.info(f"Rate limit exceeded. Sleeping for {reset_time} seconds.")
                 time.sleep(reset_time)
                 continue  # retry the current song
 
@@ -141,7 +144,7 @@ def get_song_lyrics(base_url, song_urls, min_sleep_time, max_sleep_time):
                 print(f"Error fetching {song_name}. HTTP Status Code: {response.status_code}")
 
         except requests.RequestException as e:
-            print(f"An error occurred: {e}")
+            logger.info(f"An error occurred: {e}")
             continue
 
     return artist_lyrics
@@ -160,7 +163,7 @@ def main(CONFIG, headers):
 
     for artist_id, artist_name in artists_ids.items():
         song_urls = get_artist_songs_url(api_base_url, headers, artist_id)
-        print(f'Fetching {len(song_urls)} songs for artist: {artist_name}')
+        logger.info(f'Fetching {len(song_urls)} songs for artist: {artist_name}')
         artist_lyrics = get_song_lyrics(base_url, song_urls, min_sleep_time, max_sleep_time)
         
         safe_artist_name = "".join(
@@ -175,7 +178,7 @@ def main(CONFIG, headers):
         with open(file_path, "w", encoding="utf-8") as file:
             json.dump(artist_lyrics, file, ensure_ascii=False, indent=4)
 
-        print(f"Lyrics for {artist_name} saved to {file_path}")
+        logger.info(f"Lyrics for {artist_name} saved to {file_path}")
 
 if __name__ == '__main__':
     genius_cred = get_genius_cred("genius_cred.json")
