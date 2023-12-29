@@ -5,7 +5,7 @@ import time
 import requests
 import random as rd
 from bs4 import BeautifulSoup
-from file_utils import get_genius_cred, get_config
+from src.utils.file_utils import get_genius_cred, get_config
 
 def get_artists_ids(api_base_url, headers, artists_names):
     """Fetch artist IDs based on artist names.
@@ -151,7 +151,6 @@ def main(CONFIG, headers):
     base_url = CONFIG['genius_base_url']
     api_base_url = CONFIG['genius_api_base_url']
     artists_lyrics_dir = CONFIG["artists_lyrics_dir"]
-    #proxies = CONFIG["proxies"]
     min_sleep_time = CONFIG['min_sleep_time']
     max_sleep_time = CONFIG['max_sleep_time']
 

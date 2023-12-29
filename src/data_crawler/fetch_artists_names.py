@@ -2,7 +2,7 @@ import time
 import random as rd
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth, SpotifyClientCredentials
-from file_utils import get_spotify_cred, get_config, write_in_config
+from src.utils.file_utils import get_spotify_cred, get_config, write_in_config
 
 def search_french_rap_playlists(sp, offsets):
     """
