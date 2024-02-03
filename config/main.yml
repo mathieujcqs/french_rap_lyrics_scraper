@@ -1,345 +1,195 @@
-genius_api_base_url: http://api.genius.com
-artists_lyrics_dir: artists_lyrics
-artists_names:
-- '113'
-- 1PLIKÉ140
-- 404Billy
-- 4Keus
-- ASHE 22
-- Akhenaton
-- Alonzo
-- Alpha Wann
-- Ashh
-- Bekar
-- Benab
-- Benjamin Epps
-- Bolémvn
-- Booba
-- Bosh
-- Bramsito
-- Busta Flex
-- Caballero & JeanJass
-- Cut Killer
-- DA Uzi
-- DTF
-- Dabs
-- Dadju
-- Damso
-- Dany Dan
-- Deen Burbigo
-- Diam's
-- Dinos
-- Disiz
-- Dj Leska
-- Djadja & Dinaz
-- Django
-- Doc Gynéco
-- Dosseh
-- Doums
-- Dry
-- Elams
-- F430
-- Fabe
-- Fonky Family
-- Franglish
-- Freeze corleone
-- Frenetik
-- Fresh
-- Fresh La Douille
-- GIMS
-- GLK
-- Gambi
-- Gambino La MG
-- Gazo
-- Georgio
-- Gianni
-- Gradur
-- Green Montana
-- Gringe
-- Guy2Bezbar
-- Hamza
-- Hatik
-- Heuss L'enfoiré
-- Hornet La Frappe
-- Hös Copperfield
-- IAM
-- Ideal J
-- Ikaz Boi
-- Intouchable
-- Jazzy Bazz
-- Jok'air
-- Josman
-- Jul
-- KDD
-- Kaaris
-- Kalash
-- Kalash Criminel
-- Kaza
-- KeBlack
-- Kery James
-- Kheops
-- Koba LaD
-- Kofs
-- Kore
-- L'Algérino
-- L2B
-- La Clinique
-- La Cliqua
-- La Fouine
-- Lacrim
-- Lala &ce
-- Landy
-- Larry
-- Lartiste
-- Laylow
-- Lefa
-- Les Sages Poètes de la rue
-- Leto
-- Liim’s
-- Lomepal
-- Lord Esperanza
-- Lorenzo
-- Luidji
-- Lujipeka
-- Lunatic
-- Luv Resval
-- MC Solaar
-- MZ
-- Maes
-- Mafia K'1 Fry
-- Melan
-- Mig
-- Ministère A.M.E.R.
-- Médine
-- Nahir
-- Naps
-- Naza
-- Negrito
-- Nekfeu
-- Ninho
-- Niro
-- Niska
-- Nèg' Marrons
-- Népal
-- OBOY
-- Orelsan
-- Oxmo Puccino
-- PLK
-- PNL
-- Passi
-- Pit Baccardi
-- Prince Waly
-- Psy 4 De La Rime
-- RK
-- Rilès
-- Rim'K
-- Rocca
-- Rohff
-- Roméo Elvis
-- Rémy
-- S-Crew
-- S.Pri Noir
-- SCH
-- SDM
-- SNIPER
-- Sadek
-- Saian Supa Crew
-- Sasso
-- Scred Connexion
-- Scridge
-- Sefyu
-- Seth Gueko
-- Sexion d'Assaut
-- Shay
-- Shurik'n
-- Sinik
-- Smeels
-- So La Lune
-- Soolking
-- Soprano
-- Soso Maness
-- Souffrance
-- Still Fresh
-- Suprême NTM
-- Tandem
-- Tiakola
-- Timal
-- USKY
-- UZI
-- Vald
-- Vegedream
-- Werenoi
-- X-Men
-- YL
-- Yaro
-- Youssoupha
-- Youv Dee
-- Zed
-- Ziak
-- Zkr
-- Zola
-- Zoxea
-- Zuukou mayzie
-- nelick
-- Ärsenik
-artists_names_backup:
-- Ministère A.M.E.R.
-- Lorenzo
-- Diam's
-- Assassin
-- Mafia K'1 Fry
-- X-Men
-- Lomepal
-- Gazo
-- Kofs
-- Stomy Bugsy
-- Scred Connexion
-- Laylow
-- Cut Killer
-- ISK
-- Lunatic
-- Oxmo Puccino
-- Kaaris
-- ASHE 22
-- S.Pri Noir
-- Freeze corleone
-- Norsacce Berlusconi
-- Leto
-- OBOY
-- Busta Flex
-- Pit Baccardi
-- 404Billy
-- Dinos
-- Youv Dee
-- Werenoi
-- Seth Gueko
-- Gambi
-- Médine
-- Fabe
-- Zed
-- Hatik
-- La Cliqua
-- Suprême NTM
-- Negrito
-- Ashh
-- Sofiane
-- Akhenaton
-- Nekfeu
-- Hös Copperfield
-- 4Keus
-- S-Crew
-- MC Solaar
-- Ikaz Boi
-- DA Uzi
-- Jul
-- '113'
-- Shurik'n
-- Rilès
-- Zamdane
-- SCH
-- Green Montana
-- PNL
-- Zkr
-- Passi
-- Sam's
-- La Fève
-- Deen Burbigo
-- Kalash
-- Dj Leska
-- Naps
-- Népal
-- Bramsito
-- Lala &ce
-- L'Algérino
-- Tandem
-- Sadek
-- Niro
-- Kheops
-- Lacrim
-- Kaza
-- Heuss L'enfoiré
-- Larry
-- Tiakola
-- Ziak
-- Mister V
-- nelick
-- RK
-- Elh Kmer
-- Sasso
-- Hamza
-- Chily
-- SNIPER
-- UZI
-- Yaro
-- USKY
-- Maes
-- L2B
-- Djadja & Dinaz
-- Shay
-- Roshi
-- Rohff
-- Lartiste
-- Roméo Elvis
-- Psy 4 De La Rime
-- Falcko
-- Landy
-- Doums
-- Mig
-- Fonky Family
-- Sefyu
-- Franglish
-- GLK
-- Ideal J
-- Kery James
-- Koba LaD
-- Ärsenik
-- Bekar
-- Ninho
-- Dosseh
-- Booba
-- F430
-- KDD
-- Timal
-- Nèg' Marrons
-- Disiz
-- Zoxea
-- GIMS
-- Vald
-- Melan
-- Kekra
-- La Clinique
-- Zola
-- MZ
-- Niska
-- Orelsan
-- Gradur
-- Rocca
-- Damso
-- Django
-- Dadju
-- KIK
-- Sinik
-- Jazzy Bazz
-- Caballero & JeanJass
-- Youssoupha
-- Dabs
-- Nahir
-- PLK
-- SDM
-- Alpha Wann
-- DTF
-- Soolking
-- Demi Portion
-- Les Sages Poètes de la rue
-- Fresh La Douille
-- Doc Gynéco
-- Rim'K
-- Soso Maness
-- Vin's
-- IAM
-- Alonzo
-- Kalash Criminel
-genius_base_url: https://genius.com
-google_cached_url: 'http://webcache.googleusercontent.com/search?q=cache:'
-max_sleep_time: 0.7
-min_sleep_time: 0.2
+artists:
+  lyrics_dir: data/raw
+  names_backup:
+  - '113'
+  - 1PLIKÉ140
+  - 404Billy
+  - 4Keus
+  - ASHE 22
+  - Akhenaton
+  - Alonzo
+  - Alpha Wann
+  - Ashh
+  - Bekar
+  - Benab
+  - Benjamin Epps
+  - Bolémvn
+  - Booba
+  - Bosh
+  - Bramsito
+  - Busta Flex
+  - Caballero & JeanJass
+  - Cut Killer
+  - DA Uzi
+  - DTF
+  - Dabs
+  - Dadju
+  - Damso
+  - Dany Dan
+  - Deen Burbigo
+  - Diam's
+  - Dinos
+  - Disiz
+  - Dj Leska
+  - Djadja & Dinaz
+  - Django
+  - Doc Gynéco
+  - Dosseh
+  - Doums
+  - Dry
+  - Elams
+  - F430
+  - Fabe
+  - Fonky Family
+  - Franglish
+  - Freeze corleone
+  - Frenetik
+  - Fresh
+  - Fresh La Douille
+  - GIMS
+  - GLK
+  - Gambi
+  - Gambino La MG
+  - Gazo
+  - Georgio
+  - Gianni
+  - Gradur
+  - Green Montana
+  - Gringe
+  - Guy2Bezbar
+  - Hamza
+  - Hatik
+  - Heuss L'enfoiré
+  - Hornet La Frappe
+  - Hös Copperfield
+  - IAM
+  - Ideal J
+  - Ikaz Boi
+  - Intouchable
+  - Jazzy Bazz
+  - Jok'air
+  - Josman
+  - Jul
+  - KDD
+  - Kaaris
+  - Kalash
+  - Kalash Criminel
+  - Kaza
+  - KeBlack
+  - Kery James
+  - Kheops
+  - Koba LaD
+  - Kofs
+  - Kore
+  - L'Algérino
+  - L2B
+  - La Clinique
+  - La Cliqua
+  - La Fouine
+  - Lacrim
+  - Lala &ce
+  - Landy
+  - Larry
+  - Lartiste
+  - Laylow
+  - Lefa
+  - Les Sages Poètes de la rue
+  - Leto
+  - Liim’s
+  - Lomepal
+  - Lord Esperanza
+  - Lorenzo
+  - Luidji
+  - Lujipeka
+  - Lunatic
+  - Luv Resval
+  - MC Solaar
+  - MZ
+  - Maes
+  - Mafia K'1 Fry
+  - Melan
+  - Mig
+  - Ministère A.M.E.R.
+  - Médine
+  - Nahir
+  - Naps
+  - Naza
+  - Negrito
+  - Nekfeu
+  - Ninho
+  - Niro
+  - Niska
+  - Nèg' Marrons
+  - Népal
+  - OBOY
+  - Orelsan
+  - Oxmo Puccino
+  - PLK
+  - PNL
+  - Passi
+  - Pit Baccardi
+  - Prince Waly
+  - Psy 4 De La Rime
+  - RK
+  - Rilès
+  - Rim'K
+  - Rocca
+  - Rohff
+  - Roméo Elvis
+  - Rémy
+  - S-Crew
+  - S.Pri Noir
+  - SCH
+  - SDM
+  - SNIPER
+  - Sadek
+  - Saian Supa Crew
+  - Sasso
+  - Scred Connexion
+  - Scridge
+  - Sefyu
+  - Seth Gueko
+  - Sexion d'Assaut
+  - Shay
+  - Shurik'n
+  - Sinik
+  - Smeels
+  - So La Lune
+  - Soolking
+  - Soprano
+  - Soso Maness
+  - Souffrance
+  - Still Fresh
+  - Suprême NTM
+  - Tandem
+  - Tiakola
+  - Timal
+  - USKY
+  - UZI
+  - Vald
+  - Vegedream
+  - Werenoi
+  - X-Men
+  - YL
+  - Yaro
+  - Youssoupha
+  - Youv Dee
+  - Zed
+  - Ziak
+  - Zkr
+  - Zola
+  - Zoxea
+  - Zuukou mayzie
+  - nelick
+  - Ärsenik
+genius:
+  base_url: https://genius.com
+  api_base_url: http://api.genius.com
+  max_sleep_time: 0.7
+  min_sleep_time: 0.2
+spotipy:
+  offsets: [0, 50, 100, 150, 200]
+  query: "genre: french hip hop"
+  type: "playlist"
+  limit: 50
+  genre: "french hip hop"

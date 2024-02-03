@@ -1,11 +1,13 @@
 import pandas as pd
-from src.paths import DATA_DIR
-from src.utils.file_utils import read_json_files
-from src.utils.logger import get_console_logger
-
+from collections import Counter
 import spacy
 from spacy.lang.fr.stop_words import STOP_WORDS
-from collections import Counter
+
+from src.paths import DATA_DIR
+from src.utils.logger import get_console_logger
+from src.utils.file_utils import read_songs_json_files
+
+
 
 logger = get_console_logger()
 
@@ -30,7 +32,6 @@ def add_most_common_words(df):
     return df
 
 
-
 def get_word_emotion(emotion_dict, word):
     return [emotion for emotion, present in emotion_dict.get(word, {}).items() if present]
 
@@ -51,7 +52,7 @@ def get_most_frequent_sentiment(lyrics, emotion_dict):
         return 'neutre'
 
 def main():
-    songs_data = read_json_files(DATA_DIR / 'raw')
+    songs_data = read_songs_json_files(f"{DATA_DIR}/raw")
 
     df = pd.DataFrame(songs_data)
     logger.info('Songs data loaded in a Dataframe')
@@ -74,7 +75,7 @@ def main():
     lexicon_df = pd.read_csv(DATA_DIR / 'extrernal/FEEL.csv', delimiter=';')
 
     lexicon_df = lexicon_df.drop_duplicates(subset='word')
-    emotion_dict = lexicon_df.set_index('word')[['joie', 'peur', 'tristesse', 'colère', 'surprise', 'dégout']].to_dict(orient='index')
+    emotion_dict = lexicon_df.set_index('word')[['joie', 'peur', 'tristesse', 'colère', 'surprise', 'dégout']].to_dict()
 
     df['main_sentiment'] = df["lemma_str"].apply(lambda x: get_most_frequent_sentiment(x, emotion_dict))
     logger.info('Added most common sentiment')

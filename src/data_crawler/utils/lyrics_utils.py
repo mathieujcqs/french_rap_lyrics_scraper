@@ -1,16 +1,18 @@
-import os
+
 import re
-import json
 import time
 import requests
 import random as rd
+from typing import List, Dict
+
 from bs4 import BeautifulSoup
+
 from src.utils.logger import get_console_logger
-from src.utils.file_utils import get_genius_cred, get_config
+from src.utils.file_utils import get_genius_cred
 
 logger = get_console_logger()
 
-def get_artists_ids(api_base_url, headers, artists_names):
+def get_artists_ids(api_base_url: str, headers: Dict[str, str], artists_names: List[str]) -> Dict[str, str]:
     """Fetch artist IDs based on artist names.
 
     Args:
@@ -44,7 +46,7 @@ def get_artists_ids(api_base_url, headers, artists_names):
     logger.info("IDs found")
     return artists_ids
 
-def get_artist_songs_url(api_base_url, headers, artist_id):
+def get_artist_songs_url(api_base_url: str, headers: Dict[str, str], artist_id: str) -> Dict[str, str]:
     """Fetch URLs of all songs by a specific artist from the Genius API.
 
     Args:
@@ -80,7 +82,7 @@ def get_artist_songs_url(api_base_url, headers, artist_id):
 
     return artist_songs_url
 
-def extract_verse_refrain(lyrics):
+def extract_verse_refrain(lyrics: str):
     """Extract verses and refrains from lyrics.
 
     Args:
@@ -98,7 +100,7 @@ def extract_verse_refrain(lyrics):
 
     return verses, refrains
 
-def get_song_lyrics(base_url, song_urls, min_sleep_time, max_sleep_time):
+def get_song_lyrics(base_url: str, song_urls: Dict[str, str], min_sleep_time: int, max_sleep_time: int):
     """
     Fetch and store song lyrics categorized by verses and refrains.
 
@@ -149,40 +151,7 @@ def get_song_lyrics(base_url, song_urls, min_sleep_time, max_sleep_time):
 
     return artist_lyrics
 
-def main(CONFIG, headers):
-    artists_names = CONFIG['artists_names']
-    base_url = CONFIG['genius_base_url']
-    api_base_url = CONFIG['genius_api_base_url']
-    artists_lyrics_dir = CONFIG["artists_lyrics_dir"]
-    min_sleep_time = CONFIG['min_sleep_time']
-    max_sleep_time = CONFIG['max_sleep_time']
-
-    os.makedirs(artists_lyrics_dir, exist_ok=True)
-
-    artists_ids = get_artists_ids(api_base_url, headers, artists_names)
-
-    for artist_id, artist_name in artists_ids.items():
-        song_urls = get_artist_songs_url(api_base_url, headers, artist_id)
-        logger.info(f'Fetching {len(song_urls)} songs for artist: {artist_name}')
-        artist_lyrics = get_song_lyrics(base_url, song_urls, min_sleep_time, max_sleep_time)
-        
-        safe_artist_name = "".join(
-            c if c.isalnum() or c in " ._-()" else "_"
-            for c in artist_name
-        )
-
-        # Constructing the file path
-        file_path = os.path.join(artists_lyrics_dir, f"{safe_artist_name}.json")
-
-        # Writing the lyrics data to the file
-        with open(file_path, "w", encoding="utf-8") as file:
-            json.dump(artist_lyrics, file, ensure_ascii=False, indent=4)
-
-        logger.info(f"Lyrics for {artist_name} saved to {file_path}")
-
-if __name__ == '__main__':
+def get_genius_headers() -> Dict[str, str]:
     genius_cred = get_genius_cred("genius_cred.json")
-    CONFIG = get_config("main.yml")
-    headers= { 'Authorization' : f"Bearer {genius_cred['cat']}"}
-    main(CONFIG, headers)
-     
+    
+    return { 'Authorization' : f"Bearer {genius_cred['cat']}"}
