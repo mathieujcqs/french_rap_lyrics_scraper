@@ -26,11 +26,11 @@ def search_french_rap_playlists(sp, query: str, type: str, offsets: List[int], l
     for offset in offsets:
         logger.info(f'Fetching playlists starting from offset: {offset}')
         response = sp.search(q=query, limit=limit, type=type, offset=offset)
-        all_playlist_ids.extend([item["id"] for item in response["playlists"]["items"]])
+        all_playlist_ids.extend([item["id"] for item in response["playlists"]["items"] if item["tracks"]["total"] >= limit])
 
         while response["playlists"]["next"]:
             response = sp.next(response["playlists"])
-            all_playlist_ids.extend([item["id"] for item in response["playlists"]["items"]])
+            all_playlist_ids.extend([item["id"] for item in response["playlists"]["items"] if item["tracks"]["total"] >= limit])
 
     return all_playlist_ids
 

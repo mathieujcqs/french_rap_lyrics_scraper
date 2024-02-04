@@ -38,10 +38,10 @@ def get_artists_ids(api_base_url: str, headers: Dict[str, str], artists_names: L
                 break
 
         if artist_id is not None:
-            logger.info("Collecting songs for", artist_name, ": Artist ID", artist_id)
+            logger.info(f"Collecting songs for {artist_name}: Artist ID {artist_id}")
             artists_ids[artist_id] = artist_name
         else:
-            logger.info("Artist", artist_name, "not found.")
+            logger.info(f"Artist {artist_name} not found.")
 
     logger.info("IDs found")
     return artists_ids
@@ -78,7 +78,7 @@ def get_artist_songs_url(api_base_url: str, headers: Dict[str, str], artist_id: 
         else:
             page_count += 1
 
-        logger.info(len(artist_songs_url), "songs found")
+        logger.info(f"{len(artist_songs_url)} songs found")
 
     return artist_songs_url
 
@@ -100,7 +100,7 @@ def extract_verse_refrain(lyrics: str):
 
     return verses, refrains
 
-def get_song_lyrics(base_url: str, song_urls: Dict[str, str], min_sleep_time: int, max_sleep_time: int):
+def get_song_lyrics(base_url: str, song_urls, min_sleep_time: int, max_sleep_time: int):
     """
     Fetch and store song lyrics categorized by verses and refrains.
 
@@ -115,7 +115,7 @@ def get_song_lyrics(base_url: str, song_urls: Dict[str, str], min_sleep_time: in
     """
     artist_lyrics = {}
 
-    for song_name, url in song_urls:
+    for song_name, url in song_urls.items():
         try:
             time.sleep(rd.uniform(min_sleep_time, max_sleep_time))
             response = requests.get(f"{base_url}{url}")
