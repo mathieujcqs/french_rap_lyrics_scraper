@@ -1,9 +1,8 @@
-
 import re
 import time
 import requests
 import random as rd
-from typing import List, Dict
+from typing import List, Dict, Tuple
 
 from bs4 import BeautifulSoup
 
@@ -82,25 +81,26 @@ def get_artist_songs_url(api_base_url: str, headers: Dict[str, str], artist_id: 
 
     return artist_songs_url
 
-def extract_verse_refrain(lyrics: str):
+def extract_verse_refrain(lyrics: str) -> Tuple:
     """Extract verses and refrains from lyrics.
 
     Args:
     lyrics (str): A string containing the song lyrics.
 
     Returns:
-    tuple: A tuple containing two lists, one with the verses and one with the refrains.
+    tuple: A tuple containing the verses, chorus, pre_chorus, intro and, outro lists.
     """
-    verse_pattern = r'\[Couplet \d+\]\n(.*?)(?=\[Refrain\]|\Z)'
-    refrain_pattern = r'\[Refrain\]\n(.*?)(?=\[Couplet \d+\]|\Z)'
+    
+    intro  = re.findall(r"\[Intro.*?\](.*?)(?=\n\[|\Z)", lyrics, re.DOTALL)
+    pre_chorus = re.findall(r"\[Pré-refrain.*?\](.*?)(?=\n\[|\Z)", lyrics, re.DOTALL)
+    verses = re.findall(r"\[Couplet.*?\](.*?)(?=\n\[|\Z)", lyrics, re.DOTALL)
+    chorus = re.findall(r"\[Refrain.*?\](.*?)(?=\n\[|\Z)", lyrics, re.DOTALL)
+    outro  = re.findall(r"\[Outro.*?\](.*?)(?=\n\[|\Z)", lyrics, re.DOTALL)
 
-    # Extract Couplet and Refrain sections
-    verses = re.findall(verse_pattern, lyrics, re.DOTALL)
-    refrains = re.findall(refrain_pattern, lyrics, re.DOTALL)
 
-    return verses, refrains
+    return intro, pre_chorus, verses, chorus, outro
 
-def get_song_lyrics(base_url: str, song_urls, min_sleep_time: int, max_sleep_time: int):
+def get_song_lyrics(base_url: str, song_urls, min_sleep_time: int, max_sleep_time: int) -> Dict:
     """
     Fetch and store song lyrics categorized by verses and refrains.
 
@@ -128,10 +128,13 @@ def get_song_lyrics(base_url: str, song_urls, min_sleep_time: int, max_sleep_tim
 
                 if div:
                     lyrics = div.get_text(separator="\n")
-                    song_verses, song_refrains = extract_verse_refrain(lyrics)
+                    intro, pre_chorus, verses, chorus, outro = extract_verse_refrain(lyrics)
                     artist_lyrics[song_name]['lyrics'] = lyrics
-                    artist_lyrics[song_name]['verses'] = song_verses
-                    artist_lyrics[song_name]['refrains'] = song_refrains
+                    artist_lyrics[song_name]['intro'] = intro
+                    artist_lyrics[song_name]['verses'] = verses
+                    artist_lyrics[song_name]['pre_chorus'] = pre_chorus
+                    artist_lyrics[song_name]['chorus'] = chorus
+                    artist_lyrics[song_name]['outro'] = outro
                 else:
                     print(f"Lyrics not found for {song_name}")
 
