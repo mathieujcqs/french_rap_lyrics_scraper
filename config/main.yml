@@ -1,6 +1,6 @@
 artists:
   lyrics_dir: data/raw
-  names_backup:
+  names:
   - '113'
   - 1PLIKÉ140
   - 404Billy
@@ -193,3 +193,15 @@ spotipy:
   type: "playlist"
   limit: 50
   genre: "french hip hop"
+preprocessor:
+  lyrics_char_upperbound: 1000
+  lyrics_char_lowerbound: 300
+  emotions: 
+    - joie
+    - peur
+    - tristesse
+    - colère
+    - surprise
+    - dégout
+  emotions_csv_path: extrernal/FEEL.csv
+  save_path: intermediate/lyrics_data.parquet

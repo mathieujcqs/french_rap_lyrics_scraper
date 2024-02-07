@@ -160,7 +160,7 @@ cython_debug/
 #.idea/
 
 .vscode/
-raw/
+raw*
 extra/
 genius_cred.json
 spotify_cred.json

@@ -8,6 +8,27 @@ from utils.lyrics_utils import get_genius_headers, get_artists_ids, get_artist_s
 logger = get_console_logger()
 
 def main():
+    """
+    Fetch and save lyrics for specified artists from Genius.
+
+    This script performs several key functions:
+    - Loads configuration parameters from a YAML file ('main.yml'), including artists' names,
+      lyrics directory path, Genius API URLs, and sleep times for rate limiting.
+    - Ensures the specified directory for storing lyrics exists.
+    - Fetches artist IDs from the Genius API based on configured artist names.
+    - For each artist, fetches URLs of their songs and downloads the lyrics.
+    - Cleans artist names to create safe file names for storing lyrics.
+    - Saves the lyrics to JSON files, one per artist, in the specified directory.
+
+    The Genius API is accessed using configured headers and base URLs, with requests spaced out
+    between `min_sleep_time` and `max_sleep_time` seconds to comply with rate limits.
+
+    All fetched lyrics are logged and saved under the configured lyrics directory, with each
+    artist's lyrics stored in a separate JSON file named after the artist.
+
+    Requires:
+    - The Genius API key set up in environment variables or passed through the configuration.
+    """
     CONFIG = get_config("main.yml")
     artists_names       = CONFIG["artists"]["names"]
     artists_lyrics_dir  = CONFIG["artists"]["lyrics_dir"]
