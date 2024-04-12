@@ -1,0 +1,238 @@
+artists:
+  lyrics_dir: data/raw
+  names:
+  - '113'
+  - 1PLIKÉ140
+  - 404Billy
+  - 4Keus
+  - ASHE 22
+  - Akhenaton
+  - Alonzo
+  - Alpha Wann
+  - Ashh
+  - Bekar
+  - Benab
+  - Benjamin Epps
+  - Bolémvn
+  - Booba
+  - Bosh
+  - Bramsito
+  - Busta Flex
+  - Caballero & JeanJass
+  - Cut Killer
+  - DA Uzi
+  - DTF
+  - Dabs
+  - Dadju
+  - Damso
+  - Dany Dan
+  - Deen Burbigo
+  - Diam's
+  - Dinos
+  - Disiz
+  - Dj Leska
+  - Djadja & Dinaz
+  - Django
+  - Doc Gynéco
+  - Dosseh
+  - Doums
+  - Dry
+  - Elams
+  - F430
+  - Fabe
+  - Fonky Family
+  - Franglish
+  - Freeze corleone
+  - Frenetik
+  - Fresh
+  - Fresh La Douille
+  - GIMS
+  - GLK
+  - Gambi
+  - Gambino La MG
+  - Gazo
+  - Georgio
+  - Gianni
+  - Gradur
+  - Green Montana
+  - Gringe
+  - Guy2Bezbar
+  - Hamza
+  - Hatik
+  - Heuss L'enfoiré
+  - Hornet La Frappe
+  - Hös Copperfield
+  - IAM
+  - Ideal J
+  - Ikaz Boi
+  - Intouchable
+  - Jazzy Bazz
+  - Jok'air
+  - Josman
+  - Jul
+  - KDD
+  - Kaaris
+  - Kalash
+  - Kalash Criminel
+  - Kaza
+  - KeBlack
+  - Kery James
+  - Kheops
+  - Koba LaD
+  - Kofs
+  - Kore
+  - L'Algérino
+  - L2B
+  - La Clinique
+  - La Cliqua
+  - La Fouine
+  - Lacrim
+  - Lala &ce
+  - Landy
+  - Larry
+  - Lartiste
+  - Laylow
+  - Lefa
+  - Les Sages Poètes de la rue
+  - Leto
+  - Liim’s
+  - Lomepal
+  - Lord Esperanza
+  - Lorenzo
+  - Luidji
+  - Lujipeka
+  - Lunatic
+  - Luv Resval
+  - MC Solaar
+  - MZ
+  - Maes
+  - Mafia K'1 Fry
+  - Melan
+  - Mig
+  - Ministère A.M.E.R.
+  - Médine
+  - Nahir
+  - Naps
+  - Naza
+  - Negrito
+  - Nekfeu
+  - Ninho
+  - Niro
+  - Niska
+  - Nèg' Marrons
+  - Népal
+  - OBOY
+  - Orelsan
+  - Oxmo Puccino
+  - PLK
+  - PNL
+  - Passi
+  - Pit Baccardi
+  - Prince Waly
+  - Psy 4 De La Rime
+  - RK
+  - Rilès
+  - Rim'K
+  - Rocca
+  - Rohff
+  - Roméo Elvis
+  - Rémy
+  - S-Crew
+  - S.Pri Noir
+  - SCH
+  - SDM
+  - SNIPER
+  - Sadek
+  - Saian Supa Crew
+  - Sasso
+  - Scred Connexion
+  - Scridge
+  - Sefyu
+  - Seth Gueko
+  - Sexion d'Assaut
+  - Shay
+  - Shurik'n
+  - Sinik
+  - Smeels
+  - So La Lune
+  - Soolking
+  - Soprano
+  - Soso Maness
+  - Souffrance
+  - Still Fresh
+  - Suprême NTM
+  - Tandem
+  - Tiakola
+  - Timal
+  - USKY
+  - UZI
+  - Vald
+  - Vegedream
+  - Werenoi
+  - X-Men
+  - YL
+  - Yaro
+  - Youssoupha
+  - Youv Dee
+  - Zed
+  - Ziak
+  - Zkr
+  - Zola
+  - Zoxea
+  - Zuukou mayzie
+  - nelick
+  - Ärsenik
+genius:
+  base_url: https://genius.com
+  api_base_url: http://api.genius.com
+  max_sleep_time: 0.7
+  min_sleep_time: 0.2
+spotipy:
+  offsets: [0, 50, 100, 150, 200]
+  query: "genre: french hip hop"
+  type: "playlist"
+  limit: 50
+  genre: "french hip hop"
+preprocessor:
+  lyrics_char_upperbound: 1000
+  lyrics_char_lowerbound: 300
+  emotions: 
+    - joie
+    - peur
+    - tristesse
+    - colère
+    - surprise
+    - dégout
+  emotions_csv_path: extrernal/FEEL.csv
+  save_path: intermediate/lyrics_data.parquet
+model:
+  model_name: mistralai/Mistral-7B-Instruct-v0.1
+  max_new_tokens: 1024
+  temperature: 0.8
+  top_p: 1
+  do_sample: True
+  repetition_penalty: 1.15
+  pipeline_name: "text-generation"
+  quantization_config:
+    load_in_4bit: True
+    bnb_4bit_quant_type: "nf4"
+    bnb_4bit_use_double_quant: True
+  config:
+    trust_remote_code: True
+    device_map: "auto"
+prompt:
+  prompt_template: | 
+    Use the following pieces of information to answer the user's question. 
+    You are a ghost writer for french rap artists the user might give you artists names, feelings and so on.
+    Context: {context}
+    Question: {question}
+    Help them as much as you can with the information provided.
+  input_variable: ['context', 'question']
+qdrant:
+  collection_name: "rap_lyrics"
+  embeddings_model_name: "wvprevue/e5-mistral-7b-instruct"
+  url: "http://localhost:6333"
+  search_kwargs: {"k":2}
+  chunk_size: 1024
+  chunk_overlap: 100
+  loader_glob: "**/*.json"

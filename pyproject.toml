@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "src"
+version = "0.1.0"
+description = ""
+authors = ["mathieujcqs <m.jacques139@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pandas = "^2.1.4"
+spotipy = "^2.23.0"
+PyYAML = "^6.0.1"
+bs4 = "^0.0.1"
+notebook = "^7.0.6"
+huggingface = "^0.0.1"
+tokenizers = "^0.15.0"
+matplotlib = "^3.8.2"
+spacy = "^3.7.2"
+fr_core_news_sm = {url = "https://github.com/explosion/spacy-models/releases/download/fr_core_news_sm-3.7.0/fr_core_news_sm-3.7.0-py3-none-any.whl" }
+scipy = "^1.11.4"
+accelerate = "^0.25.0"
+langchain = "^0.1.11"
+langchain-community = "^0.0.25"
+sentence-transformers = "^2.5.1"
+streamlit = "^1.33.0"
+qdrant-client = "^1.8.2"
+transformers = "^4.39.3"
+torch = "^2.2.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
