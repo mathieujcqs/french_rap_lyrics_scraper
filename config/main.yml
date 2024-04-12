@@ -205,3 +205,34 @@ preprocessor:
     - dégout
   emotions_csv_path: extrernal/FEEL.csv
   save_path: intermediate/lyrics_data.parquet
+model:
+  model_name: mistralai/Mistral-7B-Instruct-v0.1
+  max_new_tokens: 1024
+  temperature: 0.8
+  top_p: 1
+  do_sample: True
+  repetition_penalty: 1.15
+  pipeline_name: "text-generation"
+  quantization_config:
+    load_in_4bit: True
+    bnb_4bit_quant_type: "nf4"
+    bnb_4bit_use_double_quant: True
+  config:
+    trust_remote_code: True
+    device_map: "auto"
+prompt:
+  prompt_template: | 
+    Use the following pieces of information to answer the user's question. 
+    You are a ghost writer for french rap artists the user might give you artists names, feelings and so on.
+    Context: {context}
+    Question: {question}
+    Help them as much as you can with the information provided.
+  input_variable: ['context', 'question']
+qdrant:
+  collection_name: "rap_lyrics"
+  embeddings_model_name: "wvprevue/e5-mistral-7b-instruct"
+  url: "http://localhost:6333"
+  search_kwargs: {"k":2}
+  chunk_size: 1024
+  chunk_overlap: 100
+  loader_glob: "**/*.json"
